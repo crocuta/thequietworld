@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!-- version 0.5 !-->
 <html>
 <head>
+
 	<script type="text/javascript" src="webgl-utils.js"></script>
 	<script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
 
 	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="scripts.js"></script>
+	<script src="scripts-qw.js"></script>
 
 
 <title>WebGL Shader Lab</title>
@@ -263,6 +263,8 @@ gl_FragColor = col*vec4(1.0,1.0,1.0,1.0);
 		canvas.width = viewX;
 		canvas.height = viewY;
 
+		function drawScene() {
+
 		prog_advance = gl.createProgram();
 		gl.attachShader(prog_advance, getShader(gl, "shader-vs"));
 		gl.attachShader(prog_advance, getShader(gl, "shader-fs-advance"));
@@ -427,6 +429,9 @@ gl_FragColor = col*vec4(1.0,1.0,1.0,1.0);
 		gl.bindTexture(gl.TEXTURE_2D, texture_noise_n);
 
 		calculateBlurTexture();
+		}
+
+		drawScene();
 
 		initTexture();
 
@@ -459,7 +464,7 @@ gl_FragColor = col*vec4(1.0,1.0,1.0,1.0);
 
   function startVideo() {
   videoElement.play();
-  //intervalID = setInterval(drawScene, 15);
+  intervalID = setInterval(drawScene, 15);
 }
 
 function videoDone() {
